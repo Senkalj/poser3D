@@ -5,19 +5,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Particle Explosion</title>
 <style>
-  html, body { margin:0; height:100%; overflow:hidden; background:#000; }
-  canvas { display:block; }
-  #hint { position:fixed; bottom:14px; width:100%; text-align:center; color:#555;
-    font:13px system-ui, sans-serif; pointer-events:none; }
+  :root { --bg:#000; --hint:#6a6a6a; color-scheme: dark; }
+  html, body { margin:0; height:100%; overflow:hidden; background:var(--bg); }
+  canvas { display:block; position:fixed; inset:0; }
+  #hint { position:fixed; left:0; right:0; bottom:calc(14px + env(safe-area-inset-bottom, 0px)); text-align:center;
+    color:var(--hint); font:13px system-ui, sans-serif; pointer-events:none; }
 </style>
 </head>
 <body>
 <div id="hint">Click or tap to replay</div>
-<script type="importmap">
-{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
-</script>
-<script type="module">
-import * as THREE from 'three';
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
